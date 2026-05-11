@@ -95,4 +95,9 @@ app.post("/assess", async (req, reply) => {
   }
 });
 
-app.listen({ port: 3011, host: "127.0.0.1" });
+//app.listen({ port: 3000, host: "127.0.0.1" });
+
+app.listen({
+  port: Number(process.env.PORT) || 3000,
+  host: "0.0.0.0"
+});
