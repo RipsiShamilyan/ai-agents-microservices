@@ -226,7 +226,7 @@ export default function App() {
   const [service, setService] = useState<ServiceKey>("credit");
   const [values, setValues] = useState<Record<string, string>>(() => initFormValues("credit"));
 
-  const [result, setResult] = useState<unknown>(null);
+  const [, setResult] = useState<unknown>(null);
   const [parsedOnly, setParsedOnly] = useState<AgentParsed | null>(null);
 
   // audit state
