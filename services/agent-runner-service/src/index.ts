@@ -311,11 +311,11 @@ app.post<{ Body: RunBody }>("/run", async (req, reply) => {
       Array.isArray(safeParsed.recommendations) && safeParsed.recommendations.length
         ? safeParsed.recommendations.map((x: unknown) => String(x))
         : [
-            "Review the input data carefully.",
-            "Monitor this case regularly.",
-            "Apply additional controls if risk indicators increase.",
-            "Reassess after any major change in the input data."
-          ]
+          "Review the input data carefully.",
+          "Monitor this case regularly.",
+          "Apply additional controls if risk indicators increase.",
+          "Reassess after any major change in the input data."
+        ]
   };
 
   return {
@@ -324,9 +324,10 @@ app.post<{ Body: RunBody }>("/run", async (req, reply) => {
     agent,
     model: MODEL,
     latencyMs,
-    raw,
-    parsed: finalParsed,
-    parseError: parseError ?? null
+    runnerBody: {
+      parsed: finalParsed,
+      raw
+    }
   };
 });
 

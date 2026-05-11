@@ -10,48 +10,58 @@ type AgentParsed = {
   recommendations?: string[];
 };
 
-type RunnerBodyShape = {
-  parsed?: unknown;
-  raw?: unknown;
-};
+// type RunnerBodyShape = {
+//   parsed?: unknown;
+//   raw?: unknown;
+// };
 
-type BodyShape = {
-  runnerBody?: unknown;
-};
+// type BodyShape = {
+//   runnerBody?: unknown;
+// };
 
-type ServiceResponseEnvelope = {
-  creditBody?: BodyShape;
-  financialBody?: BodyShape;
-  fraudBody?: BodyShape;
-};
+// type ServiceResponseEnvelope = {
+//   creditBody?: BodyShape;
+//   financialBody?: BodyShape;
+//   fraudBody?: BodyShape;
+// };
 
 function errorMessage(e: unknown) {
   if (e instanceof Error) return e.message;
   return String(e);
 }
 
-function extractAgentParsed(result: unknown): AgentParsed | null {
+// function extractAgentParsed(result: unknown): AgentParsed | null {
+//   if (!result || typeof result !== "object") return null;
+
+//   const r = result as ServiceResponseEnvelope;
+//   const body = r.creditBody ?? r.financialBody ?? r.fraudBody ?? null;
+//   if (!body || !body.runnerBody) return null;
+
+//   const runnerBody = body.runnerBody;
+
+//   if (runnerBody && typeof runnerBody === "object") {
+//     const rb = runnerBody as RunnerBodyShape;
+
+//     if (rb.parsed && typeof rb.parsed === "object") return rb.parsed as AgentParsed;
+
+//     if (typeof rb.raw === "string") {
+//       try {
+//         return JSON.parse(rb.raw) as AgentParsed;
+//       } catch {
+//         return null;
+//       }
+//     }
+//   }
+//   return null;
+// }
+
+function extractAgentParsed(result: any): AgentParsed | null {
   if (!result || typeof result !== "object") return null;
 
-  const r = result as ServiceResponseEnvelope;
-  const body = r.creditBody ?? r.financialBody ?? r.fraudBody ?? null;
-  if (!body || !body.runnerBody) return null;
-
-  const runnerBody = body.runnerBody;
-
-  if (runnerBody && typeof runnerBody === "object") {
-    const rb = runnerBody as RunnerBodyShape;
-
-    if (rb.parsed && typeof rb.parsed === "object") return rb.parsed as AgentParsed;
-
-    if (typeof rb.raw === "string") {
-      try {
-        return JSON.parse(rb.raw) as AgentParsed;
-      } catch {
-        return null;
-      }
-    }
+  if (result.parsed) {
+    return result.parsed;
   }
+
   return null;
 }
 
