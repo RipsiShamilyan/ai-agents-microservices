@@ -351,7 +351,13 @@ app.delete("/api/audit", async (_req, reply) => {
   reply.status(res.status).send(body);
 });
 
-app.listen({ port: 3000, host: "127.0.0.1" });
+
+/*app.listen({ port: 3000, host: "127.0.0.1" });*/
+
+app.listen({
+  port: Number(process.env.PORT) || 3000,
+  host: "0.0.0.0"
+});
 
 
 
