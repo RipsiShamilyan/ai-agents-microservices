@@ -1,0 +1,10 @@
+{
+  "name": "ai-agents-microservices",
+  "private": true,
+  "packageManager": "pnpm@10.30.1",
+  "scripts": {
+    "dev:gateway": "pnpm --filter gateway-api dev",
+    "dev:runner": "pnpm --filter agent-runner-service dev",
+    "dev:audit": "pnpm --filter audit-logging-service dev"
+  }
+}
