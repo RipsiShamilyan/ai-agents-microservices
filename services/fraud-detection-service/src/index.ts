@@ -92,4 +92,8 @@ app.post("/check", async (req, reply) => {
   }
 });
 
-app.listen({ port: 3013, host: "127.0.0.1" });
+// app.listen({ port: 3013, host: "127.0.0.1" });
+app.listen({
+  port: Number(process.env.PORT) || 3013,
+  host: "0.0.0.0"
+});
