@@ -330,4 +330,9 @@ app.post<{ Body: RunBody }>("/run", async (req, reply) => {
   };
 });
 
-app.listen({ port: 3002, host: "127.0.0.1" });
+// app.listen({ port: 3002, host: "127.0.0.1" });
+
+app.listen({
+  port: Number(process.env.PORT) || 3002,
+  host: "0.0.0.0"
+});
